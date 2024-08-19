@@ -5,9 +5,9 @@ Authors@R:
     person("Yan-Feng", "Wu", , "yanfengwu13@fudan.edu.cn", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7105-1070"))
 Description: Simulate exactly the Heston stochastic volatility model and its 
-    affine jump diffusion extensions. The extensions include a) incorporating
-    jumps in the price process, b) adding contemporaneous jumps both in the 
-    price and variance processes. 
+    affine jump diffusion extensions using the Broadie-Kaya algorithm. 
+    The extensions include a) incorporating jumps in the price process, 
+    b) adding contemporaneous jumps both in the price and variance processes. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

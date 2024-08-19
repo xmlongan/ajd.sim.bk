@@ -22,7 +22,7 @@ models include
 
 Broadie, M., & Kaya, Ö. (2006). Exact simulation of stochastic
 volatility and other affine jump diffusion processes. *Operations
-research*, 54(2), 217-231.
+Research*, 54(2), 217-231.
 
 ## Installation
 
@@ -43,8 +43,8 @@ simulated returns:
 library(ajd.sim.bk)
 v0 = 0.010201; k = 6.21; theta = 0.019; sigma = 0.61; rho = -0.7
 r = 0.0319; tau = 1
-Y = ryield_Hest(1000, v0, tau, r, k, theta, sigma, rho)
-hist(Y)
+Y = ajd.sim.bk::ryield_Hest(1000, v0, tau, r, k, theta, sigma, rho)
+hist(Y, main="Heston SV model")
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
