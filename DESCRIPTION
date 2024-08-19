@@ -1,6 +1,6 @@
 Package: ajd.sim.bk
 Title: Simulation of Affine Jump Diffusions Using Broadie-Kaya Method
-Version: 1.0.0.0
+Version: 1.0.0
 Authors@R: 
     person("Yan-Feng", "Wu", , "yanfengwu13@fudan.edu.cn", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7105-1070"))
