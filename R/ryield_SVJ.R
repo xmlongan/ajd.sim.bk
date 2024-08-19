@@ -1,8 +1,8 @@
 #' Simulate Yield using Broadie-Kaya Method for the SVJ model
 #'
 #' @description
-#' Simulate the next period yield given current variance using the Broadie-Kaya
-#' method for the SVJ model.
+#' Simulate the next period yield given current variance using
+#' Broadie-Kaya (2006) method for the SVJ model.
 #'
 #' @param n number of yield samples to simulate.
 #' @param v0 current variance level.
@@ -28,7 +28,7 @@
 #' # lambda, mu_bar, sigma_s)
 #' # hist(Y)
 ryield_SVJ <- function(n, v0, tau, r, k, theta, sigma, rho,
-                          lambda, mu_bar, sigma_s, log.inv = FALSE) {
+                       lambda, mu_bar, sigma_s, log.inv = FALSE) {
   # diffusion part
   Y = ryield_Hest(n, v0, tau, r-lambda*mu_bar, k, theta, sigma, rho, log.inv)
   # jump part

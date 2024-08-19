@@ -14,6 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+Exact simulation of the Heston SV | SVJ | SVCJ models using the Broadie-Kaya
+algorithm.
+
 ## Simulate returns of the Heston SV | SVJ | SVCJ models
 
 ```{r setup}
@@ -42,3 +45,8 @@ Y = ryield_SVCJ(N, v0, tau, r, k, theta, sigma, rho, lambda, mu_bar,
 If your are interested in pricing the European call option using Monte Carlo
 simulation for the Heston SV, SVJ and SVCJ models. Please refer to functions
 `?price_Hest`, `?price_SVJ` and `?price_SVCJ`.
+
+## Reference
+
+Broadie, M., & Kaya, Ö. (2006). Exact simulation of stochastic volatility and
+other affine jump diffusion processes. *Operations research*, 54(2), 217-231.

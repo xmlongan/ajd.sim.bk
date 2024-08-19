@@ -44,7 +44,7 @@ riv <- function(n, v0, v1, tau, k, theta, sigma, log.inv = FALSE) {
   #
   if (log.inv) {
     t.taken = Sys.time() - t.start; t.taken = as.numeric(t.taken)
-    fname = format(t.start, "./script/logs/riv-%Hhour-%Mmin.csv")
+    fname = format(t.start, "./logs/riv-%Hhour-%Mmin.csv")
     if (!file.exists(fname)) {
       title = c("v0", "v1", "tau", "k", "theta", "sigma", "h",
                 "num_Bessel_eval", "secs_consumed\n")

@@ -1,8 +1,8 @@
 #' Pricing the European Call Option Under the SVJ Model
 #'
 #' @description
-#' Pricing the European call option under the SVJ model using the
-#' Broadie-Kaya method for the simulation.
+#' Pricing the European call option under the SVJ model using
+#' Broadie-Kaya (2006) method for the simulation.
 #'
 #' @param N number of underling asset price samples to simulate.
 #' @param S current underling asset price.

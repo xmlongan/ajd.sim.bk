@@ -1,8 +1,8 @@
 #' Simulate Yield using Broadie-Kaya Method for the SVCJ model
 #'
 #' @description
-#' Simulate the next period yield given current variance using the Broadie-Kaya
-#' method for the SVCJ model.
+#' Simulate the next period yield given current variance using
+#' Broadie-Kaya (2006) method for the SVCJ model.
 #'
 #' @param n number of yield samples to simulate.
 #' @param v0 current variance level.
@@ -44,7 +44,7 @@ ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
   v0_original = v0
   #
   if (log.inv) {
-    fname = format(Sys.time(), "./script/logs/riv-%Hhour-%Mmin.csv")
+    fname = format(Sys.time(), "./logs/riv-%Hhour-%Mmin.csv")
     if (!file.exists(fname)) {
       title = c("v0", "v1", "tau", "k", "theta", "sigma", "h",
                 "num_Bessel_eval", "secs_consumed\n")

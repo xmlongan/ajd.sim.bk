@@ -7,15 +7,22 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `ajd.sim.bk` is to simulate exactly the Heston Stochastic
-Volatility (SV) model and its Affine Jump Diffusion (AJD) extensions
-using the method in Broadie and Kaya (2006), hence the name
-`ajd.sim.bk`. The extended models include
+The goal of `ajd.sim.bk` is to **sim**ulate exactly the Heston
+Stochastic Volatility (SV) model and its **A**ffine **J**ump
+**D**iffusion (AJD) extensions using the **B**roadie-**K**aya algorithm
+(Broadie and Kaya, 2006), hence the name `ajd.sim.bk`. The extended
+models include
 
 - SVJ: SV model with jumps in the price process.
 
 - SVCJ: SV model with contemporaneous jumps both in the price and
   variance processes.
+
+*Reference*:
+
+Broadie, M., & Kaya, Ö. (2006). Exact simulation of stochastic
+volatility and other affine jump diffusion processes. *Operations
+research*, 54(2), 217-231.
 
 ## Installation
 
