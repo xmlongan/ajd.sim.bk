@@ -1,0 +1,44 @@
+---
+title: "ajd-sim-bk"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ajd-sim-bk}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Simulate returns of the Heston SV | SVJ | SVCJ models
+
+```{r setup}
+library(ajd.sim.bk)
+# Heston SV
+v0 = 0.010201; k = 6.21; theta = 0.019; sigma = 0.61; rho = -0.7
+r = 0.0319; tau = 1
+N = 1000 # number of samples
+Y = ryield_Hest(1000, v0, tau, r, k, theta, sigma, rho)
+# SVJ
+v0 = 0.008836; k = 3.99; theta = 0.014; sigma = 0.27; rho = -0.79
+r = 0.0319; tau = 5; lambda = 0.11; mu_bar = -0.12; sigma_s = 0.15
+N = 1000 # number of samples
+Y = ryield_SVJ(N, v0, tau, r, k, theta, sigma, rho, lambda, mu_bar, sigma_s)
+# SVCJ
+v0 = 0.007569; k = 3.46; theta = 0.008; sigma = 0.14; rho = -0.82
+r = 0.0319; tau = 1; lambda = 0.47; mu_bar = -0.1; sigma_s = 0.0001
+mu_v = 0.05; rho_J = -0.38
+N = 1000 # number of samples
+Y = ryield_SVCJ(N, v0, tau, r, k, theta, sigma, rho, lambda, mu_bar, 
+                sigma_s, mu_v, rho_J)
+```
+
+## Pricing the European call option Using Monte Carlo simulation
+
+If your are interested in pricing the European call option using Monte Carlo
+simulation for the Heston SV, SVJ and SVCJ models. Please refer to functions
+`?price_Hest`, `?price_SVJ` and `?price_SVCJ`.
