@@ -6,7 +6,7 @@
 \alias{ajd.sim.bk-package}
 \title{ajd.sim.bk: Simulation of Affine Jump Diffusions Using Broadie-Kaya Method}
 \description{
-Simulate exactly the Heston stochastic volatility model and its affine jump diffusion extensions. The extensions include a) incorporating jumps in the price process, b) adding contemporaneous jumps both in the price and variance processes.
+Simulate exactly the Heston stochastic volatility model and its affine jump diffusion extensions using the Broadie-Kaya algorithm. The extensions include a) incorporating jumps in the price process, b) adding contemporaneous jumps both in the price and variance processes.
 }
 \author{
 \strong{Maintainer}: Yan-Feng Wu \email{yanfengwu13@fudan.edu.cn} (\href{https://orcid.org/0000-0002-7105-1070}{ORCID})

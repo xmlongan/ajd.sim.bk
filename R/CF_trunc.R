@@ -12,6 +12,7 @@
 #' @param theta parameter \eqn{\theta}.
 #' @param sigma parameter \eqn{\sigma}.
 #' @param eps truncate error bound.
+#' @param log.inv `FALSE`, logging the Fourier inversion if `log.inv = TRUE`.
 #'
 #' @return
 #' vector of CF points.
@@ -25,9 +26,11 @@
 #' plot(Re(zs), Im(zs), type="b", col="blue"); abline(h=0,v=0, col="red")
 #' hj = seq(1, length(zs)) * h
 #' plot(hj, Re(zs), type="b", col="blue"); abline(h=0, col="red")
-CF_trunc <- function(h, v0, v1, tau, k, theta, sigma, eps=1e-5) {
+CF_trunc <- function(h, v0, v1, tau, k, theta, sigma, eps=1e-5, log.inv=F) {
   # dk = exp(-k*tau)
   # z0 = sqrt(v0*v1)*(4*k/sigma^2)*exp(-0.5*k*tau)/(1-dk); branch0 = 0
+  #
+  if (log.inv) { ts = proc.time() }
   #
   z0 = 1+1i; branch0 = 0 # any value in the first quadrant is OK for z0
   f_z1_branch1 = CF_next(h, z0, branch0, v0, v1, tau, k, theta, sigma)
@@ -42,5 +45,18 @@ CF_trunc <- function(h, v0, v1, tau, k, theta, sigma, eps=1e-5) {
     f = f_z1_branch1$f; z1 = f_z1_branch1$z1; branch1 = f_z1_branch1$branch1
     fs = append(fs, f)
   }
+  #
+  if (log.inv) {
+    tt = proc.time() - ts; tt = tt[[3]]
+    fname = format(Sys.time(), "./script/logs/riv-%Hhour-%Mmin.csv")
+    if (!file.exists(fname)) {
+      title = c("v0", "v1", "tau", "k", "theta", "sigma", "h",
+                "num_Bessel_eval", "secs_consumed\n")
+      cat(title, file=fname, sep=',', append=T)
+    }
+    str = paste(v0, v1, tau, k, theta, sigma, h, 2*length(fs), tt, sep=',')
+    cat(str, '\n', file=fname, append=T)
+  }
+  #
   return(fs)
 }

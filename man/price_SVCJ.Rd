@@ -67,8 +67,8 @@ the Duffie et al. (2000) method.}
 vector of pricing error and consumed time (simulation).
 }
 \description{
-Pricing the European call option under the SVCJ model using the
-Broadie-Kaya method for the simulation.
+Pricing the European call option under the SVCJ model using
+Broadie-Kaya (2006) method for the simulation.
 }
 \examples{
 S = 100; K = 100; v0 = 0.007569; k = 3.46; theta = 0.008; sigma = 0.14

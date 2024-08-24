@@ -22,16 +22,7 @@
 #' r = 0.0319; tau = 1
 #' # Y = ryield_Hest(1000, v0, tau, r, k, theta, sigma, rho)
 #' # hist(Y)
-ryield_Hest <- function(n, v0, tau, r, k, theta, sigma, rho,
-                        log.inv = FALSE) {
-  if (log.inv) {
-    fname = format(Sys.time(), "./logs/riv-%Hhour-%Mmin.csv")
-    if (!file.exists(fname)) {
-      title = c("v0", "v1", "tau", "k", "theta", "sigma", "h",
-                "num_Bessel_eval", "secs_consumed\n")
-      cat(title, file=fname, sep=',', append=T)
-    }
-  }
+ryield_Hest <- function(n, v0, tau, r, k, theta, sigma, rho, log.inv = F) {
   #
   Y = rep(0, n)
   for (i in 1:n) {

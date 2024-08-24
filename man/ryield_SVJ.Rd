@@ -16,7 +16,7 @@ ryield_SVJ(
   lambda,
   mu_bar,
   sigma_s,
-  log.inv = FALSE
+  log.inv = F
 )
 }
 \arguments{
@@ -49,8 +49,8 @@ underling asset price process.}
 next period yield, a scalar.
 }
 \description{
-Simulate the next period yield given current variance using the Broadie-Kaya
-method for the SVJ model.
+Simulate the next period yield given current variance using
+Broadie-Kaya (2006) method for the SVJ model.
 }
 \examples{
 v0 = 0.008836; k = 3.99; theta = 0.014; sigma = 0.27; rho = -0.79

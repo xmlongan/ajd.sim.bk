@@ -33,8 +33,7 @@
 #' # lambda, mu_bar, sigma_s, mu_v, rho_J)
 #' # hist(Y)
 ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
-                        lambda, mu_bar, sigma_s, mu_v, rho_J,
-                        log.inv = FALSE) {
+                        lambda, mu_bar, sigma_s, mu_v, rho_J, log.inv = F) {
   # change the r (mu)
   r = r - lambda * mu_bar
   mu_s = log((1+mu_bar)*(1-rho_J*mu_v)) - sigma_s^2/2
@@ -42,15 +41,6 @@ ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
   Y = rep(0, n)
   #
   v0_original = v0
-  #
-  if (log.inv) {
-    fname = format(Sys.time(), "./logs/riv-%Hhour-%Mmin.csv")
-    if (!file.exists(fname)) {
-      title = c("v0", "v1", "tau", "k", "theta", "sigma", "h",
-                "num_Bessel_eval", "secs_consumed\n")
-      cat(title, file=fname, sep=',', append=T)
-    }
-  }
   #
   for (i in 1:n) {
     v0 = v0_original
@@ -76,7 +66,7 @@ ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
       J_v = stats::rexp(1, rate = 1/mu_v)
       v1 = v1 + J_v
       # J_s = exp(stats::rnorm(1, mean=mu_s+rho_J*J_v, sd=sigma_s)) - 1
-      J_s = stats::rnorm(1, mean=mu_s+rho_J*J_v, sd=sigma_s)
+      J_s = stats::rnorm(1, mean = mu_s+rho_J*J_v, sd = sigma_s)
       #
       Y[i] = Y[i] + diffusion + J_s
       #

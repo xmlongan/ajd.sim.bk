@@ -18,7 +18,7 @@ ryield_SVCJ(
   sigma_s,
   mu_v,
   rho_J,
-  log.inv = FALSE
+  log.inv = F
 )
 }
 \arguments{
@@ -57,8 +57,8 @@ jumps in the price and variance.}
 next period yield, a scalar.
 }
 \description{
-Simulate the next period yield given current variance using the Broadie-Kaya
-method for the SVCJ model.
+Simulate the next period yield given current variance using
+Broadie-Kaya (2006) method for the SVCJ model.
 }
 \examples{
 v0 = 0.007569; k = 3.46; theta = 0.008; sigma = 0.14; rho = -0.82

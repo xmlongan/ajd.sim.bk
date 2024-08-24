@@ -4,7 +4,7 @@
 \alias{CF_trunc}
 \title{Truncate the Characteristic Function}
 \usage{
-CF_trunc(h, v0, v1, tau, k, theta, sigma, eps = 1e-05)
+CF_trunc(h, v0, v1, tau, k, theta, sigma, eps = 1e-05, log.inv = F)
 }
 \arguments{
 \item{h}{grid size.}
@@ -22,6 +22,8 @@ CF_trunc(h, v0, v1, tau, k, theta, sigma, eps = 1e-05)
 \item{sigma}{parameter \eqn{\sigma}.}
 
 \item{eps}{truncate error bound.}
+
+\item{log.inv}{\code{FALSE}, logging the Fourier inversion if \code{log.inv = TRUE}.}
 }
 \value{
 vector of CF points.

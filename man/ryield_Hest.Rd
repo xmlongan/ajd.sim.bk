@@ -4,7 +4,7 @@
 \alias{ryield_Hest}
 \title{Simulate Yield using Broadie-Kaya Method for the Heston Model}
 \usage{
-ryield_Hest(n, v0, tau, r, k, theta, sigma, rho, log.inv = FALSE)
+ryield_Hest(n, v0, tau, r, k, theta, sigma, rho, log.inv = F)
 }
 \arguments{
 \item{n}{number of yield samples to simulate.}
@@ -29,8 +29,8 @@ ryield_Hest(n, v0, tau, r, k, theta, sigma, rho, log.inv = FALSE)
 next period yield, a scalar.
 }
 \description{
-Simulate the next period yield given current variance using the Broadie-Kaya
-method.
+Simulate the next period yield given current variance using
+Broadie-Kaya (2006) method.
 }
 \examples{
 v0 = 0.010201; k = 6.21; theta = 0.019; sigma = 0.61; rho = -0.7

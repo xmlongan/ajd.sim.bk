@@ -30,32 +30,13 @@ riv <- function(n, v0, v1, tau, k, theta, sigma, log.inv = FALSE) {
   }
   #
   sd = sqrt(var)
-  mu_eps = mu[1] + 7*sd; h = pi/mu_eps
+  mu_eps = mu[1] + 7*sd
   #
   #     Truncate the Characteristic Function inversion
   # through error bound
   #
-  if (log.inv) { t.start = Sys.time() }
-  #
-  zs = CF_trunc(h, v0, v1, tau, k, theta, sigma, eps = 1e-5)
-  j    = seq(1, length(zs))
-  hj   = h*j
-  Rezs = Re(zs); rm(zs)
-  #
-  if (log.inv) {
-    t.taken = Sys.time() - t.start; t.taken = as.numeric(t.taken)
-    fname = format(t.start, "./logs/riv-%Hhour-%Mmin.csv")
-    if (!file.exists(fname)) {
-      title = c("v0", "v1", "tau", "k", "theta", "sigma", "h",
-                "num_Bessel_eval", "secs_consumed\n")
-      cat(title, file=fname, sep=',', append=T)
-    }
-    str = paste(v0, v1, tau, k, theta, sigma, h, 2*length(j), t.taken, sep=',')
-    cat(str, '\n', file=fname, append=T)
-  }
-  #
   xs = rep(0, n)
-  for (k in 1:n) {
+  for (i in 1:n) {
     U = stats::runif(1)
     #             normal approximation
     x0 = stats::qnorm(U, mean=mu[1], sd=sd)
@@ -65,12 +46,19 @@ riv <- function(n, v0, v1, tau, k, theta, sigma, log.inv = FALSE) {
     iter = 0
     repeat {
       iter = iter + 1
+      #
+      h = 2*pi/(x0 + mu_eps)
+      zs = CF_trunc(h, v0, v1, tau, k, theta, sigma, eps=1e-5, log.inv=log.inv)
+      j = seq(1, length(zs)); hj = h*j; Rezs = Re(zs); rm(zs)
+      #
       f   = h*x0/pi + (2/pi) * sum((sin(hj*x0)/j) * Rezs) - U
       df  = h/pi    + (2/pi) * sum(cos(hj*x0) * h * Rezs)
       ddf =         - (2/pi) * sum(sin(hj*x0) * hj * h * Rezs)
       delta = 1 - 2*f*ddf/df^2
-      if (delta >= 0) { x = x0 - (df/ddf) * (1 - sqrt(delta)) }
-      else { found = FALSE; break }
+      if (delta >= 0) {
+        x = x0 - (df/ddf) * (1 - sqrt(delta))
+        if (x < 0) {found = FALSE; break }
+      } else { found = FALSE; break }
       if (abs(x-x0) < 1e-5 || iter > 10) { found = TRUE; break }
       x0 = x
     }
@@ -80,13 +68,18 @@ riv <- function(n, v0, v1, tau, k, theta, sigma, log.inv = FALSE) {
       lb = 0; ub = mu[1] + 7*sd; x = (lb + ub)/2
       while (ub - lb > 1e-5) {
         x = (lb + ub)/2
+        #
+        h = 2*pi/(x0 + mu_eps)
+        zs = CF_trunc(h, v0, v1, tau, k, theta, sigma, eps=1e-5, log.inv=log.inv)
+        j = seq(1, length(zs)); hj = h*j; Rezs = Re(zs); rm(zs)
+        #
         p = h*x/pi + (2/pi) * sum((sin(hj*x)/j) * Rezs)
         if (p < U)      { lb = x }
         else if (p > U) { ub = x }
         else            { break  } # found, break the while loop
       }
     }
-    xs[k] = x
+    xs[i] = x
   }
   return(xs)
 }

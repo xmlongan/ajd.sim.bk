@@ -36,8 +36,8 @@ the Heston (1993) method.}
 vector of pricing error and consumed time (simulation).
 }
 \description{
-Pricing the European call option under the Heston model using the
-Broadie-Kaya method for the simulation.
+Pricing the European call option under the Heston model using
+Broadie-Kaya (2006) method for the simulation.
 }
 \examples{
 S = 100; K = 100; v0 = 0.010201; k = 6.21; theta = 0.019; sigma = 0.61

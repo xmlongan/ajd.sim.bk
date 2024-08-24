@@ -27,12 +27,12 @@
 #' # price_Hest(10000, S, K, v0, tau, r, k, theta, sigma, rho, true_price)
 price_Hest <- function(N, S, K, v0, tau, r, k, theta, sigma, rho,
                        true_price, log.inv = F) {
-  start.time = Sys.time()
+  ts = proc.time()
   Y = ryield_Hest(N, v0, tau, r, k, theta, sigma, rho, log.inv)
   cprice_MC = exp(-r*tau) * mean(pmax(S*exp(Y)-K, 0))
-  end.time = Sys.time()
-  time.taken = end.time - start.time
+  te = proc.time()
+  tt = ts - te
   error = cprice_MC - true_price
   #
-  return(c(error, as.numeric(time.taken)))
+  return(c(error, tt[[3]]))
 }

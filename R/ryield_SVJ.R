@@ -28,18 +28,17 @@
 #' # lambda, mu_bar, sigma_s)
 #' # hist(Y)
 ryield_SVJ <- function(n, v0, tau, r, k, theta, sigma, rho,
-                       lambda, mu_bar, sigma_s, log.inv = FALSE) {
+                       lambda, mu_bar, sigma_s, log.inv = F) {
   # diffusion part
-  Y = ryield_Hest(n, v0, tau, r-lambda*mu_bar, k, theta, sigma, rho, log.inv)
+  mu = r-lambda*mu_bar
+  Y = ryield_Hest(n, v0, tau, mu, k, theta, sigma, rho, log.inv)
   # jump part
   Jsum = rep(0, n)
   mu_s = log(1+mu_bar) - sigma_s^2/2
   Ns = stats::rpois(n, lambda*tau)
   for (i in 1:n) {
-    if (Ns[i] > 0) {
-      # Jsum[i] = sum(exp(stats::rnorm(Ns[i], mu_s, sigma_s)) - 1)
-      Jsum[i] = sum(stats::rnorm(Ns[i], mu_s, sigma_s))
-    }
+    # Jsum[i] = sum(exp(stats::rnorm(Ns[i], mu_s, sigma_s)) - 1) # wrong
+    Jsum[i] = sum(stats::rnorm(Ns[i], mu_s, sigma_s))
   }
   # continuous + jump
   return(Y+Jsum)
