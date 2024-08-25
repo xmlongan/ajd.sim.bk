@@ -10,7 +10,7 @@ div(x, v0, v1, tau, k, theta, sigma)
 
 piv(q, v0, v1, tau, k, theta, sigma)
 
-riv(n, v0, v1, tau, k, theta, sigma, log.inv = FALSE)
+riv(v0, v1, tau, k, theta, sigma, log.inv = FALSE)
 }
 \arguments{
 \item{x}{vector of quantile.}
@@ -29,37 +29,25 @@ riv(n, v0, v1, tau, k, theta, sigma, log.inv = FALSE)
 
 \item{q}{vector of quantile.}
 
-\item{n}{number of observations.}
-
 \item{log.inv}{\code{FALSE}, logging the Fourier inversion if \code{log.inv = TRUE}.}
 }
 \value{
 \code{div} gives the density, \code{piv} gives the distribution function, and
-\code{riv} generates random deviates.
+\code{riv} generates a random deviate.
 }
 \description{
 Density, distribution function and random variable generation for the
 conditional distribution of the Integrated Variance (IV),
 all through Fourier inversion of the Characteristic Function,
 see \code{\link[=CF]{CF()}} for the details.
-
-Currently, only \code{\link[=riv]{riv()}} has been tested heavily and can be used
-safely for most scenarios.
-
-While, for other functions,
-use them carefully, because currently the truncation of Fourier inversion of
-the CF is not done in a robust way.
 }
 \details{
 The distribution function is inversed from the conditional CF, see
 \code{\link[=invCF]{invCF()}} and \code{\link[=CF]{CF()}}.
 Noting that \code{piv()} is a wrapper for \code{invCF()}.
-Currently, the discretized inversions are done through:
-\itemize{
-\item \code{piv()}, \code{div()}:  \code{hj = seq(0.001, 1500, 0.001)}, i.e., \code{h=0.001}
-and truncated at \code{j=length(hj)}.
-\item \code{riv()}: \eqn{h = \pi/\mu_{\epsilon}} with
-\eqn{\mu_{\epsilon} = \mu_{iv} + 7\sigma_{iv}}, where \eqn{\mu_{iv}} and
+Currently, the discretized inversions are done through
+\eqn{h = 2\pi/(x + \mu_{\epsilon}}) with
+\eqn{\mu_{\epsilon} = \mu_{iv} + 5\sigma_{iv}}, where \eqn{\mu_{iv}} and
 \eqn{\sigma_{iv}} denote the conditional mean and standard deviation of the
 integrated variance, respectively. Meanwhile, the truncation is done at
 \eqn{j=N} when
@@ -67,7 +55,6 @@ integrated variance, respectively. Meanwhile, the truncation is done at
   \frac{|\Phi(hN)|}{N} < \frac{\pi\epsilon}{2},
 }
 where \eqn{\epsilon} is the desired truncation error.
-}
 }
 \examples{
 # x = seq(0,0.1,0.001)
@@ -83,7 +70,7 @@ where \eqn{\epsilon} is the desired truncation error.
 # txt = "Conditional PDF of IV"
 # plot(x, d, type="l", col="blue", ylab="PDF", main=txt); abline(h=0,v=0)
 
-# r = riv(1, v0, v1, tau, k, theta, sigma)
+# r = riv(v0, v1, tau, k, theta, sigma)
 
 }
 \references{

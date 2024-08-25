@@ -27,7 +27,7 @@ ryield_Hest <- function(n, v0, tau, r, k, theta, sigma, rho, log.inv = F) {
   Y = rep(0, n)
   for (i in 1:n) {
     v1 = rv(v0, tau, k, theta, sigma)
-    iv = riv(1, v0, v1, tau, k, theta, sigma, log.inv)
+    iv = riv(v0, v1, tau, k, theta, sigma, log.inv)
     I = (v1 - v0 - k*theta*tau + k*iv)/sigma
     mu = r*tau - iv/2 + rho*I
     Y[i] = mu + sqrt(1-rho^2) * stats::rnorm(1, 0, sd=sqrt(iv))

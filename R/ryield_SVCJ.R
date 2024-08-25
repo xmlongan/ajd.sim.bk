@@ -58,7 +58,7 @@ ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
       # diffusion
       delta_t = delta_ts[j]
       v1 = rv(v0, delta_t, k, theta, sigma)
-      iv = riv(1, v0, v1, delta_t, k, theta, sigma, log.inv)
+      iv = riv(v0, v1, delta_t, k, theta, sigma, log.inv)
       I  = (v1 - v0 - k*theta*delta_t + k*iv)/sigma
       mu = r*delta_t - iv/2 + rho*I
       diffusion = mu + sqrt(1-rho^2) * stats::rnorm(1, mean=0, sd=sqrt(iv))

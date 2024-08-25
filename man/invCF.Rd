@@ -28,8 +28,6 @@ whether the supplied \eqn{x} is a scalar or a vector.
 \description{
 Get the conditional Cumulative Distribution Function (CDF) of the
 integrated variance, given the two side variance levels.
-Use it carefully, because currently the truncation of Fourier inversion of
-the CF is not done in a robust way.
 }
 \details{
 The CDF is computed using Fourier inversion methods:
@@ -43,8 +41,16 @@ numerically:
   \text{P}\{IV_{u,t} \le x\} \approx \frac{hx}{\pi} + \frac{2}{\pi}
   \sum_{j=1}^{\infty}\frac{\sin(hjx)}{j}\text{Re}[\Phi(hj)],
 }
-where \eqn{h} is the grid size, which is set as 0.001 internally, and
-\code{hj = seq(0.001, 1500, 0.001)}.
+where \eqn{h} is the grid size, set through
+\eqn{h = 2\pi/(x + \mu_{\epsilon}}) with
+\eqn{\mu_{\epsilon} = \mu_{iv} + 5\sigma_{iv}}, where \eqn{\mu_{iv}} and
+\eqn{\sigma_{iv}} denote the conditional mean and standard deviation of the
+integrated variance, respectively. Meanwhile, the truncation is done at
+\eqn{j=N} when
+\deqn{
+  \frac{|\Phi(hN)|}{N} < \frac{\pi\epsilon}{2},
+}
+where \eqn{\epsilon} is the desired truncation error.
 }
 \examples{
 # x = seq(0,0.1,0.001)

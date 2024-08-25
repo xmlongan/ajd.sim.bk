@@ -6,16 +6,8 @@
 #' all through Fourier inversion of the Characteristic Function,
 #' see [CF()] for the details.
 #'
-#' Currently, only [riv()] has been tested heavily and can be used
-#' safely for most scenarios.
-#'
-#' While, for other functions,
-#' use them carefully, because currently the truncation of Fourier inversion of
-#' the CF is not done in a robust way.
-#'
 #' @param q vector of quantile.
 #' @param x vector of quantile.
-#' @param n number of observations.
 #' @param v0 the left end, \eqn{v_u}.
 #' @param v1 the right end, \eqn{v_t}.
 #' @param tau time difference, \eqn{t-u}.
@@ -28,11 +20,9 @@
 #' The distribution function is inversed from the conditional CF, see
 #' [invCF()] and [CF()].
 #' Noting that `piv()` is a wrapper for `invCF()`.
-#' Currently, the discretized inversions are done through:
-#' - `piv()`, `div()`:  `hj = seq(0.001, 1500, 0.001)`, i.e., `h=0.001`
-#' and truncated at `j=length(hj)`.
-#' - `riv()`: \eqn{h = \pi/\mu_{\epsilon}} with
-#' \eqn{\mu_{\epsilon} = \mu_{iv} + 7\sigma_{iv}}, where \eqn{\mu_{iv}} and
+#' Currently, the discretized inversions are done through
+#' \eqn{h = 2\pi/(x + \mu_{\epsilon}}) with
+#' \eqn{\mu_{\epsilon} = \mu_{iv} + 5\sigma_{iv}}, where \eqn{\mu_{iv}} and
 #' \eqn{\sigma_{iv}} denote the conditional mean and standard deviation of the
 #' integrated variance, respectively. Meanwhile, the truncation is done at
 #' \eqn{j=N} when
@@ -43,7 +33,7 @@
 #'
 #' @return
 #' `div` gives the density, `piv` gives the distribution function, and
-#' `riv` generates random deviates.
+#' `riv` generates a random deviate.
 #' @export
 #'
 #' @seealso See [CF()] for the details about the Characteristic
@@ -68,7 +58,7 @@
 #' # txt = "Conditional PDF of IV"
 #' # plot(x, d, type="l", col="blue", ylab="PDF", main=txt); abline(h=0,v=0)
 #'
-#' # r = riv(1, v0, v1, tau, k, theta, sigma)
+#' # r = riv(v0, v1, tau, k, theta, sigma)
 #'
 piv <- function(q, v0, v1, tau, k, theta, sigma) {
   return(invCF(q, v0, v1, tau, k, theta, sigma))
