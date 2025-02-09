@@ -53,7 +53,7 @@ simulated returns:
 library(ajd.sim.bk)
 v0 = 0.010201; k = 6.21; theta = 0.019; sigma = 0.61; rho = -0.7
 r = 0.0319; tau = 1
-Y = ajd.sim.bk::ryield_Hest(1000, v0, tau, r, k, theta, sigma, rho)
+Y = ajd.sim.bk::ryield_hest(1000, v0, tau, r, k, theta, sigma, rho)
 hist(Y, main="Heston SV model")
 ```
 
@@ -67,4 +67,4 @@ If you want to simulate samples from the other two SV models, use:
 
 If your are interested in pricing the European call option using Monte Carlo
 simulation for the Heston SV, SVJ and SVCJ models. Please refer to functions
-`?price_Hest`, `?price_SVJ` and `?price_SVCJ`.
+`?price_hest`, `?price_svj` and `?price_svcj`.

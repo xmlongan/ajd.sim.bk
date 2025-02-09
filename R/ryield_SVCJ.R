@@ -29,10 +29,10 @@
 #' v0 = 0.007569; k = 3.46; theta = 0.008; sigma = 0.14; rho = -0.82
 #' r = 0.0319; tau = 1; lambda = 0.47; mu_bar = -0.1; sigma_s = 0.0001
 #' mu_v = 0.05; rho_J = -0.38
-#' # Y = ryield_Hest(1000, v0, tau, r, k, theta, sigma, rho,
+#' # Y = ryield_hest(1000, v0, tau, r, k, theta, sigma, rho,
 #' # lambda, mu_bar, sigma_s, mu_v, rho_J)
 #' # hist(Y)
-ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
+ryield_svcj <- function(n, v0, tau, r, k, theta, sigma, rho,
                         lambda, mu_bar, sigma_s, mu_v, rho_J, log.inv = F) {
   # change the r (mu)
   r = r - lambda * mu_bar
@@ -48,7 +48,7 @@ ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
     numJ = stats::rpois(1, lambda * tau)
     # no jump
     if (numJ == 0) {
-      Y[i] = ryield_Hest(1, v0, tau, r, k, theta, sigma, rho)
+      Y[i] = ryield_hest(1, v0, tau, r, k, theta, sigma, rho)
       next
     }
     # at least one jump
@@ -75,7 +75,7 @@ ryield_SVCJ <- function(n, v0, tau, r, k, theta, sigma, rho,
     # residual time diffusion
     delta_t = tau - Jtime[numJ]
     if (delta_t > 0) {
-      Y[i] = Y[i] + ryield_Hest(1, v0, delta_t, r, k, theta, sigma, rho)
+      Y[i] = Y[i] + ryield_hest(1, v0, delta_t, r, k, theta, sigma, rho)
     }
   }
   return(Y)

@@ -29,12 +29,12 @@
 #' S = 100; K = 100; v0 = 0.008836; k = 3.99; theta = 0.014; sigma = 0.27
 #' rho = -0.79; r = 0.0319; tau = 5; lambda = 0.11; mu_bar = -0.12
 #' sigma_s = 0.15; true_price = 20.1642
-#' # price_SVJ(10000, S, K, v0, tau, r, k, theta, sigma, rho, lambda, mu_bar,
+#' # price_svj(10000, S, K, v0, tau, r, k, theta, sigma, rho, lambda, mu_bar,
 #' # sigma_s, true_price)
-price_SVJ  <- function(N, S, K, v0, tau, r, k, theta, sigma, rho,
+price_svj  <- function(N, S, K, v0, tau, r, k, theta, sigma, rho,
                        lambda, mu_bar, sigma_s, true_price, log.inv=F) {
   ts = proc.time()
-  Y = ryield_SVJ(N, v0, tau, r, k, theta, sigma, rho,
+  Y = ryield_svj(N, v0, tau, r, k, theta, sigma, rho,
                  lambda, mu_bar, sigma_s, log.inv)
   cprice_MC = exp(-r*tau) * mean(pmax(S*exp(Y)-K, 0))
   te = proc.time()

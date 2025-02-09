@@ -20,9 +20,9 @@
 #' @examples
 #' v0 = 0.010201; k = 6.21; theta = 0.019; sigma = 0.61; rho = -0.7
 #' r = 0.0319; tau = 1
-#' # Y = ryield_Hest(1000, v0, tau, r, k, theta, sigma, rho)
+#' # Y = ryield_hest(1000, v0, tau, r, k, theta, sigma, rho)
 #' # hist(Y)
-ryield_Hest <- function(n, v0, tau, r, k, theta, sigma, rho, log.inv = F) {
+ryield_hest <- function(n, v0, tau, r, k, theta, sigma, rho, log.inv = F) {
   #
   Y = rep(0, n)
   for (i in 1:n) {
