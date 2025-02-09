@@ -14,26 +14,26 @@ registerDoParallel(cl)
 N = 10000
 err_dur = foreach(g = 1:200) %dopar% ajd.sim.bk::price_hest(
   N, S, K, v0, tau, r, k, theta, sigma, rho, true_price)
-write_to_csv(err_dur, "./script/heston-s1-moms8-0010K.csv")
+write_to_csv(err_dur, "./script/heston-s1-BK-0010K.csv")
 #
 N = 40000
 err_dur = foreach(g = 1:200) %dopar% ajd.sim.bk::price_hest(
   N, S, K, v0, tau, r, k, theta, sigma, rho, true_price)
-write_to_csv(err_dur, "./script/heston-s1-moms8-0040K.csv")
+write_to_csv(err_dur, "./script/heston-s1-BK-0040K.csv")
 #
 N = 160000
 err_dur = foreach(g = 1:200) %dopar% ajd.sim.bk::price_hest(
   N, S, K, v0, tau, r, k, theta, sigma, rho, true_price)
-write_to_csv(err_dur, "./script/heston-s1-moms8-0160K.csv")
+write_to_csv(err_dur, "./script/heston-s1-BK-0160K.csv")
 #
 N = 640000
 err_dur = foreach(g = 1:200) %dopar% ajd.sim.bk::price_hest(
   N, S, K, v0, tau, r, k, theta, sigma, rho, true_price)
-write_to_csv(err_dur, "./script/heston-s1-moms8-0640K.csv")
+write_to_csv(err_dur, "./script/heston-s1-BK-0640K.csv")
 #
 N = 2560000
 err_dur = foreach(g = 1:200) %dopar% ajd.sim.bk::price_hest(
   N, S, K, v0, tau, r, k, theta, sigma, rho, true_price)
-write_to_csv(err_dur, "./script/heston-s1-moms8-2560K.csv")
+write_to_csv(err_dur, "./script/heston-s1-BK-2560K.csv")
 #
 stopCluster(cl)
