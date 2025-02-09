@@ -59,9 +59,9 @@ hist(Y, main="Heston SV model")
 
 If you want to simulate samples from the other two SV models, use:
 
-- `ryield_SVJ()` for SVJ model,
+- `ryield_svj()` for SVJ model,
 
-- `ryield_SVCJ()` for SVCJ model.
+- `ryield_svcj()` for SVCJ model.
 
 ## Pricing the European call option Using Monte Carlo simulation
 
