@@ -31,7 +31,7 @@ price_hest <- function(N, S, K, v0, tau, r, k, theta, sigma, rho,
   Y = ryield_hest(N, v0, tau, r, k, theta, sigma, rho, log.inv)
   cprice_MC = exp(-r*tau) * mean(pmax(S*exp(Y)-K, 0))
   te = proc.time()
-  tt = ts - te
+  tt = te - ts
   error = cprice_MC - true_price
   #
   return(c(error, tt[[3]]))
