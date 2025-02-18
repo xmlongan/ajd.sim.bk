@@ -7,6 +7,9 @@ S = 100; K = 100; v0 = 0.008836; k = 3.99; theta = 0.014; sigma = 0.27
 rho = -0.79; r = 0.0319; tau = 5; lmbd = 0.11; mu_b = -0.12; sigma_s = 0.15
 true_price = 20.1642 # true option price
 #
+price_svj(1000, S, K, v0, tau, r, k, theta, sigma, rho, lmbd, mu_b, sigma_s,
+          true_price, log.inv = T)
+#
 cl = makeCluster(10)
 registerDoParallel(cl)
 #

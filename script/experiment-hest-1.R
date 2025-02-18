@@ -8,6 +8,8 @@ S = 100; K = 100; v0 = 0.010201; k = 6.21; theta = 0.019; sigma = 0.61
 rho = -0.7; r = 0.0319; tau = 1
 true_price = 6.8061 # true option price
 #
+price_hest(1, S, K, v0, tau, r, k, theta, sigma, rho, true_price, log.inv=T)
+#
 cl = makeCluster(10)
 registerDoParallel(cl)
 #

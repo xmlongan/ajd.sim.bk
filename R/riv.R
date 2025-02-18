@@ -13,7 +13,7 @@ riv <- function(v0, v1, tau, k, theta, sigma, log.inv = FALSE) {
     return(tau*(v0+v1)/2)
   }
   #               Compute the first two moments
-  mu = miv(v0, v1, tau, k, theta, sigma)
+  mu = miv(v0, v1, tau, k, theta, sigma)  # 5 evaluations of BesselI
   if (any(!is.finite(mu))) {
     stop(sprintf("mu[1]=%.20f, mu[2]=%.20f",mu[1],mu[2]))
   }

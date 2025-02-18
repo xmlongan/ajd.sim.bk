@@ -48,7 +48,8 @@ CF_trunc <- function(h, v0, v1, tau, k, theta, sigma, eps=1e-5, log.inv=F) {
   #
   if (log.inv) {
     tt = proc.time() - ts; tt = tt[[3]]
-    fname = format(Sys.time(), "./script/logs/riv-%Hhour-%Mmin.csv")
+    # fname = format(Sys.time(), "./script/logs/riv-%Hhour-%Mmin.csv")
+    fname = "./script/log-inv/logs.csv"
     if (!file.exists(fname)) {
       title = c("v0", "v1", "tau", "k", "theta", "sigma", "h",
                 "num_Bessel_eval", "secs_consumed\n")
